@@ -61,10 +61,10 @@ contains
                                              & (m + 2*buff_size + 1)* &
                                              & (n + 2*buff_size + 1)* &
                                              & (p + 2*buff_size + 1)/ &
-                                             & (mnp_min + 2*buff_size + 1)
+                                             & (cells_bounds%mnp_min + 2*buff_size + 1)
                 else
                     halo_size = -1 + buff_size*(sys_size + 2*nb*4)* &
-                                             & (mn_max + 2*buff_size + 1)
+                                             & (cells_bounds%mn_max + 2*buff_size + 1)
                 end if
             else
                 halo_size = -1 + buff_size*(sys_size + 2*nb*4)
@@ -76,10 +76,10 @@ contains
                                             & (m + 2*buff_size + 1)* &
                                             & (n + 2*buff_size + 1)* &
                                             & (p + 2*buff_size + 1)/ &
-                                            & (mnp_min + 2*buff_size + 1)
+                                            & (cells_bounds%mnp_min + 2*buff_size + 1)
                 else
                     halo_size = -1 + buff_size*sys_size* &
-                                            & (mn_max + 2*buff_size + 1)
+                                            & (cells_bounds%mn_max + 2*buff_size + 1)
                 end if
             else
                 halo_size = -1 + buff_size*sys_size

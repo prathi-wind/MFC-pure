@@ -552,15 +552,7 @@ contains
             end if
         end do
 
-        ! Update the min and max of the cells in each direction
-        mn_max = max(m, n)
-        np_max = max(n, p)
-        mp_max = max(m, p)
-        mnp_max = max(m, n, p)
-        mn_min = min(m, n)
-        np_min = min(n, p)
-        mp_min = min(m, p)
-        mnp_min = min(m, n, p)
+        call s_update_cell_extremes(cells_bounds, m, n, p)
 
         ! Boundary condition at the beginning
         if (proc_coords(1) > 0 .or. (bc_x%beg == BC_PERIODIC .and. num_procs_x > 1)) then
@@ -790,10 +782,10 @@ contains
                                         & (m + 2*gp_layers + 1)* &
                                         & (n + 2*gp_layers + 1)* &
                                         & (p + 2*gp_layers + 1)/ &
-                                        & (mnp_min + 2*gp_layers + 1)))
+                                        & (cells_bounds%mnp_min + 2*gp_layers + 1)))
             else
                 @:ALLOCATE(ib_buff_send(0:-1 + gp_layers* &
-                                        & (mn_max + 2*gp_layers + 1)))
+                                        & (cells_bounds%mn_max + 2*gp_layers + 1)))
             end if
         else
             @:ALLOCATE(ib_buff_send(0:-1 + gp_layers))

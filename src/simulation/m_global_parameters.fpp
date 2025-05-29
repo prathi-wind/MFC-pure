@@ -21,6 +21,8 @@ module m_global_parameters
 
     use m_helper_basic         !< Functions to compare floating point numbers
 
+    use m_helper, only: s_update_cell_extremes
+
 #ifdef MFC_OpenACC
     use openacc
 #endif
@@ -44,11 +46,7 @@ module m_global_parameters
     !> @}
 
     !> @name Max and min number of cells in a direction of each combination of x-,y-, and z-
-    !> @{
-    integer :: mn_max, np_max, mp_max, mnp_max
-    integer :: mn_min, np_min, mp_min, mnp_min
-
-    !> @}
+    type(cell_num_bounds) :: cells_bounds
 
     !> @name Global number of cells in each direction
     !> @{
@@ -524,15 +522,7 @@ contains
         ! Computational domain parameters
         m = dflt_int; n = 0; p = 0
 
-        ! Update the min and max of the cells in each direction
-        mn_max = max(m, n)
-        np_max = max(n, p)
-        mp_max = max(m, p)
-        mnp_max = max(m, n, p)
-        mn_min = min(m, n)
-        np_min = min(n, p)
-        mp_min = min(m, p)
-        mnp_min = min(m, n, p)
+        call s_update_cell_extremes(cells_bounds, m, n, p)
 
         cyl_coord = .false.
 

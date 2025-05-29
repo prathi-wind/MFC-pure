@@ -66,6 +66,9 @@ module m_start_up
     use ieee_arithmetic
 
     use m_helper_basic          !< Functions to compare floating point numbers
+    
+    use m_helper, only: s_update_cell_extremes
+
 
 #ifdef MFC_OpenACC
     use openacc
@@ -207,15 +210,7 @@ contains
                 bodyForces = .true.
             endif
 
-            ! Update the min and max of the cells in each direction
-            mn_max = max(m, n)
-            np_max = max(n, p)
-            mp_max = max(m, p)
-            mnp_max = max(m, n, p)
-            mn_min = min(m, n)
-            np_min = min(n, p)
-            mp_min = min(m, p)
-            mnp_min = min(m, n, p)
+            call s_update_cell_extremes(cells_bounds, m, n, p)
 
             ! Store m,n,p into global m,n,p
             m_glb = m
