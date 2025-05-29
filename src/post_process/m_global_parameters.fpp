@@ -44,7 +44,6 @@ module m_global_parameters
     integer :: mn_min, np_min, mp_min, mnp_min
     !> @}
 
-
     integer(8) :: nGlobal ! Total number of cells in global domain
 
     !> @name Cylindrical coordinates (either axisymmetric or full 3D)
@@ -340,7 +339,7 @@ contains
 
         ! Computational domain parameters
         m = dflt_int; n = 0; p = 0
-        
+
         ! Update the min and max of the cells in each direction
         mn_max = max(m, n)
         np_max = max(n, p)

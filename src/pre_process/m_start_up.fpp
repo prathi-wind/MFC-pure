@@ -179,7 +179,7 @@ contains
             np_min = min(n, p)
             mp_min = min(m, p)
             mnp_min = min(m, n, p)
-            
+
             ! Store m,n,p into global m,n,p
             m_glb = m
             n_glb = n

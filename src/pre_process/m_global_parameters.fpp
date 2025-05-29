@@ -47,7 +47,6 @@ module m_global_parameters
 
     !> @}
 
-
     integer(8) :: nGlobal !< Global number of cells in the domain
 
     integer :: m_glb, n_glb, p_glb !< Global number of cells in each direction
@@ -310,7 +309,7 @@ contains
 
         ! Computational domain parameters
         m = dflt_int; n = 0; p = 0
-        
+
         ! Update the min and max of the cells in each direction
         mn_max = max(m, n)
         np_max = max(n, p)
@@ -320,7 +319,7 @@ contains
         np_min = min(n, p)
         mp_min = min(m, p)
         mnp_min = min(m, n, p)
-        
+
         cyl_coord = .false.
 
         x_domain%beg = dflt_real
