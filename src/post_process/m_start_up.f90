@@ -106,6 +106,18 @@ contains
             end if
 
             close (1)
+
+            ! Update the min and max of the cells in each direction
+            mn_max = max(m, n)
+            np_max = max(n, p)
+            mp_max = max(m, p)
+            mnp_max = max(m, n, p)
+            mn_min = min(m, n)
+            np_min = min(n, p)
+            mp_min = min(m, p)
+            mnp_min = min(m, n, p)
+
+
             ! Store m,n,p into global m,n,p
             m_glb = m
             n_glb = n
