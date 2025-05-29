@@ -67,7 +67,6 @@ module m_start_up
 
     use m_helper_basic          !< Functions to compare floating point numbers
     
-    use m_helper, only: s_update_cell_extremes
 
 
 #ifdef MFC_OpenACC
@@ -210,7 +209,7 @@ contains
                 bodyForces = .true.
             endif
 
-            call s_update_cell_extremes(cells_bounds, m, n, p)
+            call s_update_cell_bounds(cells_bounds, m, n, p)
 
             ! Store m,n,p into global m,n,p
             m_glb = m

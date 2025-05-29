@@ -21,7 +21,7 @@ module m_mpi_proxy
 
     use ieee_arithmetic
 
-    use m_helper, only: s_update_cell_extremes
+    use m_helper_basic, only: s_update_cell_bounds
 
     implicit none
 
@@ -601,7 +601,7 @@ contains
             end if
         end do
 
-        call s_update_cell_extremes(cells_bounds, m, n, p)
+        call s_update_cell_bounds(cells_bounds, m, n, p)
 
         ! Boundary condition at the beginning
         if (proc_coords(1) > 0 .or. bc_x%beg == BC_PERIODIC) then

@@ -19,8 +19,6 @@ module m_global_parameters
 
     use m_thermochem, only: num_species, species_names
 
-    use m_helper, only: s_update_cell_extremes
-
     implicit none
 
     !> @name Logistics
@@ -339,7 +337,7 @@ contains
         ! Computational domain parameters
         m = dflt_int; n = 0; p = 0
 
-        call s_update_cell_extremes(cells_bounds, m, n, p)
+        call s_update_cell_bounds(cells_bounds, m, n, p)
 
         m_root = dflt_int
         cyl_coord = .false.

@@ -552,7 +552,7 @@ contains
             end if
         end do
 
-        call s_update_cell_extremes(cells_bounds, m, n, p)
+        call s_update_cell_bounds(cells_bounds, m, n, p)
 
         ! Boundary condition at the beginning
         if (proc_coords(1) > 0 .or. (bc_x%beg == BC_PERIODIC .and. num_procs_x > 1)) then

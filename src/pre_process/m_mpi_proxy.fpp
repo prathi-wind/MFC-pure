@@ -20,7 +20,9 @@ module m_mpi_proxy
     use m_global_parameters     !< Global parameters for the code
 
     use m_mpi_common
-
+    
+    use m_helper_basic, only: s_update_cell_bounds
+    
     implicit none
 
     integer, private :: err_code, ierr, v_size !<
@@ -571,7 +573,7 @@ contains
             end if
         end do
 
-        call s_update_cell_extremes(cells_bounds, m, n, p)
+        call s_update_cell_bounds(cells_bounds, m, n, p)
 
         ! Boundary condition at the beginning
         if (proc_coords(1) > 0 .or. (bc_x%beg == BC_PERIODIC .and. num_procs_x > 1)) then

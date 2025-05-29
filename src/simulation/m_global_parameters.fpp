@@ -21,8 +21,6 @@ module m_global_parameters
 
     use m_helper_basic         !< Functions to compare floating point numbers
 
-    use m_helper, only: s_update_cell_extremes
-
 #ifdef MFC_OpenACC
     use openacc
 #endif
@@ -522,7 +520,7 @@ contains
         ! Computational domain parameters
         m = dflt_int; n = 0; p = 0
 
-        call s_update_cell_extremes(cells_bounds, m, n, p)
+        call s_update_cell_bounds(cells_bounds, m, n, p)
 
         cyl_coord = .false.
 

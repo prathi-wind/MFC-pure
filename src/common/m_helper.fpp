@@ -34,8 +34,7 @@ module m_helper
               associated_legendre, &
               spherical_harmonic_func, &
               double_factorial, &
-              factorial, &
-              s_update_cell_extremes
+              factorial
 
 contains
 
@@ -574,19 +573,5 @@ contains
 
     end function factorial
 
-    pure elemental subroutine s_update_cell_extremes(extreme, m, n, p)
-        type(cell_num_bounds), intent(out) :: extreme
-        integer, intent(in) :: m, n, p
-        
-        extreme%mn_max = max(m, n)
-        extreme%np_max = max(n, p)
-        extreme%mp_max = max(m, p)
-        extreme%mnp_max = max(m, n, p)
-        extreme%mn_min = min(m, n)
-        extreme%np_min = min(n, p)
-        extreme%mp_min = min(m, p)
-        extreme%mnp_min = min(m, n, p)
-
-    end subroutine s_update_cell_extremes
 
 end module m_helper

@@ -41,6 +41,9 @@ module m_start_up
 
     use m_chemistry
 
+    use m_helper_basic, only: s_update_cell_bounds
+
+
     implicit none
 
 contains
@@ -107,7 +110,7 @@ contains
 
             close (1)
 
-            call s_update_cell_extremes(cells_bounds, m, n, p)
+            call s_update_cell_bounds(cells_bounds, m, n, p)
 
             ! Store m,n,p into global m,n,p
             m_glb = m
