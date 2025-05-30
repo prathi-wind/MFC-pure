@@ -573,5 +573,4 @@ contains
 
     end function factorial
 
-
 end module m_helper

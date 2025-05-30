@@ -20,9 +20,9 @@ module m_mpi_proxy
     use m_global_parameters     !< Global parameters for the code
 
     use m_mpi_common
-    
+
     use m_helper_basic, only: s_update_cell_bounds
-    
+
     implicit none
 
     integer, private :: err_code, ierr, v_size !<

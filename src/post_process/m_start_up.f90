@@ -43,7 +43,6 @@ module m_start_up
 
     use m_helper_basic, only: s_update_cell_bounds
 
-
     implicit none
 
 contains

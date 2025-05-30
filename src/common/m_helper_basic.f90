@@ -121,7 +121,7 @@ contains
     pure elemental subroutine s_update_cell_bounds(bounds, m, n, p)
         type(cell_num_bounds), intent(out) :: bounds
         integer, intent(in) :: m, n, p
-        
+
         bounds%mn_max = max(m, n)
         bounds%np_max = max(n, p)
         bounds%mp_max = max(m, p)
