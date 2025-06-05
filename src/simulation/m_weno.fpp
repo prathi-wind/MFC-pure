@@ -109,7 +109,7 @@ contains
     !>  The computation of parameters, the allocation of memory,
         !!      the association of pointers and/or the execution of any
         !!      other procedures that are necessary to setup the module.
-    subroutine s_initialize_weno_module
+    impure subroutine s_initialize_weno_module
 
         if (weno_order == 1) return
 
@@ -673,7 +673,7 @@ contains
 
         if (weno_order == 1) then
             if (weno_dir == 1) then
-                !$acc parallel loop collapse(4) default(present)
+                !$acc parallel loop collapse(4) gang vector default(present)
                 do i = 1, ubound(v_vf, 1)
                     do l = is3_weno%beg, is3_weno%end
                         do k = is2_weno%beg, is2_weno%end
@@ -686,7 +686,7 @@ contains
                 end do
                 !$acc end parallel loop
             else if (weno_dir == 2) then
-                !$acc parallel loop collapse(4) default(present)
+                !$acc parallel loop collapse(4) gang vector default(present)
                 do i = 1, ubound(v_vf, 1)
                     do l = is3_weno%beg, is3_weno%end
                         do k = is2_weno%beg, is2_weno%end
@@ -699,7 +699,7 @@ contains
                 end do
                 !$acc end parallel loop
             else if (weno_dir == 3) then
-                !$acc parallel loop collapse(4) default(present)
+                !$acc parallel loop collapse(4) gang vector default(present)
                 do i = 1, ubound(v_vf, 1)
                     do l = is3_weno%beg, is3_weno%end
                         do k = is2_weno%beg, is2_weno%end
@@ -1235,7 +1235,7 @@ contains
         !!  @param j First-coordinate cell index
         !!  @param k Secone-coordinate cell index
         !!  @param l Thire-coordinate cell index
-    subroutine s_preserve_monotonicity(v_rs_ws, vL_rs_vf, vR_rs_vf)
+    pure subroutine s_preserve_monotonicity(v_rs_ws, vL_rs_vf, vR_rs_vf)
 
         real(wp), dimension(idwbuff(1)%beg:, idwbuff(2)%beg:, idwbuff(3)%beg:, 1:), intent(IN) :: v_rs_ws
         real(wp), dimension(idwbuff(1)%beg:, idwbuff(2)%beg:, idwbuff(3)%beg:, 1:), intent(INOUT) :: vL_rs_vf, vR_rs_vf
@@ -1399,7 +1399,7 @@ contains
     end subroutine s_preserve_monotonicity
 
     !>  Module deallocation and/or disassociation procedures
-    subroutine s_finalize_weno_module()
+    impure subroutine s_finalize_weno_module()
 
         if (weno_order == 1) return
 

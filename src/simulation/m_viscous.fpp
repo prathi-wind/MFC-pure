@@ -31,7 +31,7 @@ module m_viscous
 
 contains
 
-    subroutine s_initialize_viscous_module
+    impure subroutine s_initialize_viscous_module
 
         integer :: i, j !< generic loop iterators
 
@@ -1329,7 +1329,7 @@ contains
         end do
 
         if (n > 0) then
-            !$acc parallel loop collapse(3) gang vector
+            !$acc parallel loop collapse(3) gang vector default(present)
             do l = is3_viscous%beg, is3_viscous%end
                 do k = is2_viscous%beg, is2_viscous%end
                     do j = is1_viscous%beg, is1_viscous%end
@@ -1342,7 +1342,7 @@ contains
         end if
 
         if (p > 0) then
-            !$acc parallel loop collapse(3) gang vector
+            !$acc parallel loop collapse(3) gang vector default(present)
             do l = is3_viscous%beg, is3_viscous%end
                 do k = is2_viscous%beg, is2_viscous%end
                     do j = is1_viscous%beg, is1_viscous%end
@@ -1455,7 +1455,7 @@ contains
 
     end subroutine s_compute_fd_gradient
 
-    subroutine s_finalize_viscous_module()
+    impure subroutine s_finalize_viscous_module()
 
         @:DEALLOCATE(Res_viscous)
 
